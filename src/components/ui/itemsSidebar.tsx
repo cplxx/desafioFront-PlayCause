@@ -6,7 +6,7 @@ type ItemsSidebarProps = React.HTMLProps<HTMLDivElement> &
   VariantProps<typeof itemsSidebar>;
 
 const itemsSidebar = tv({
-  base: "bg-[#343434] h-screen lg:p-5 ",
+  base: "dark:bg-[#343434] bg-[#F5F7F8]  h-screen lg:p-5 ",
   variants: {
     itemsSidebarTv: {
       mobile: "block lg:hidden",
@@ -22,7 +22,10 @@ const ItemsSidebar = ({ itemsSidebarTv }: ItemsSidebarProps) => {
       <Separator />
       <ul className="mt-5">
         <li>
-          <Button variant={"link"} className="text-lg text-white">
+          <Button
+            variant={"link"}
+            className="text-lg text-black dark:text-white"
+          >
             Jeremy
           </Button>
         </li>

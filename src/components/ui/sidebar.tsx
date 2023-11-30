@@ -10,12 +10,15 @@ const Sidebar = () => {
       <aside className="lg:w-[15%] w-[10%] h-screen text-white">
         <div className="block lg:hidden">
           <Sheet>
-            <div className=" flex items-start pt-5 justify-center  h-screen bg-[#343434]">
-              <SheetTrigger className="md:hidden ">
+            <div className=" flex items-start pt-5 justify-center  h-screen dark:bg-[#343434] bg-[#F5F7F8]">
+              <SheetTrigger className="md:hidden text-black dark:text-white ">
                 <RxHamburgerMenu size={20} />
               </SheetTrigger>
             </div>
-            <SheetContent side={"left"} className="bg-[#343434]">
+            <SheetContent
+              side={"left"}
+              className="dark:bg-[#343434] bg-[#F5F7F8]"
+            >
               <ItemsSidebar itemsSidebarTv="mobile" />
             </SheetContent>
           </Sheet>
