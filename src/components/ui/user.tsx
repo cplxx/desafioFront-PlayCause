@@ -1,9 +1,34 @@
+"use client";
+
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
+import Messages from "./messages";
+import messages from "./messages";
+import { useEffect, useState } from "react";
+import { Socket, io } from "socket.io-client";
 
 const User = () => {
+  const [socket, setSocket] = useState<Socket>();
+  const [messages, setMessages] = useState<string[]>([]);
+
+  useEffect(() => {
+    const newSocket = io("http://localhost:8001");
+    setSocket(newSocket);
+  }, [setSocket]);
+
+  const messageListener = (message: string) => {
+    setMessages([...messages, message]);
+  };
+
+  useEffect(() => {
+    socket?.on("message", messageListener);
+    return () => {
+      socket?.off("message", messageListener);
+    };
+  }, [messageListener]);
+
   return (
     <>
-      <div className="">
+      <div className="flex flex-col">
         <div className="flex items-center gap-4">
           <Avatar>
             <AvatarImage
@@ -16,12 +41,7 @@ const User = () => {
           </Avatar>
           <p>Kevin Kalde</p>
         </div>
-        <p className="pl-14 dark:text-gray-300">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur
-          provident libero iusto quae sint, labore aliquid omnis ipsam deserunt
-          dolor laborum, qui dolores at atque rem! Quasi accusantium quibusdam
-          numquam!
-        </p>
+        <Messages messages={messages} />
       </div>
     </>
   );
