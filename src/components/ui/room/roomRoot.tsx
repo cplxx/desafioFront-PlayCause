@@ -3,7 +3,7 @@ export type RoomProps = React.HTMLProps<HTMLDivElement> &
   VariantProps<typeof root>;
 
 const root = tv({
-  base: "w-full border h-screen shadow bg-[#212121]",
+  base: "w-full border h-screen shadow dark:bg-[#212121] ",
   variants: {
     roots: {
       mobile: "bg-red-400",

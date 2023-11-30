@@ -3,7 +3,7 @@ import { tv, VariantProps } from "tailwind-variants";
 type bodyProps = React.HTMLProps<HTMLDivElement> & VariantProps<typeof root>;
 
 const root = tv({
-  base: "text-lg",
+  base: "flex items-center p-6 gap-10 text-xs",
   variants: {
     roomContent: {},
   },
