@@ -9,7 +9,6 @@ const MessageInput = () => {
 
   const handleKeyPress: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
     if (e.key === "Enter") {
-      console.log("chegou", value);
       send(value);
       setValue("");
     }

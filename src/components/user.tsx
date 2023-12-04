@@ -1,41 +1,61 @@
-// messages.js
+import { toggleFavoriteMessage } from "@/store/useFavoriteMessage";
+import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
+import { Button } from "./button";
+import usePostFavoriteMsg from "@/services/postAllFavoritesMsg";
 
-import React, { useEffect } from "react";
-import { useFavoriteStore } from "@/store/useFavoriteMessage";
-import { useSocket } from "@/hooks/useSocket";
-import { Messages as MessagesType } from "@/models/messages";
-import Message from "./message";
+interface MessageProps {
+  name: string;
+  content: string;
+  favoriteMessagesIds?: string[];
+  messageId: number;
+}
 
-const Messages = ({ initalMessages }: { initalMessages: MessagesType[] }) => {
-  const { messages } = useSocket();
-  console.log(initalMessages);
-  const favoriteMessagesIds = useFavoriteStore(
-    (state) => state.favoriteMessageIds
-  );
+const Message = ({
+  name,
+  content,
+  favoriteMessagesIds,
+  messageId,
+}: MessageProps) => {
+  const mutation = usePostFavoriteMsg();
 
-  useEffect(() => {
-    console.log("New message received:", messages);
-  }, [messages]);
+  const HandleFavClick = (messageId: number) => {
+    mutation.mutate(messageId);
+    toggleFavoriteMessage(content);
+  };
 
   return (
-    <div>
-      {initalMessages.map((item) => (
-        <Message key={item.id} content={item.content} name={item.user.name} />
-      ))}
-      {messages.length > 0 &&
-        messages.map((item) => (
-          <Message
-            key={item.id}
-            content={item.content}
-            name={item.user.name}
-            favoriteMessagesIds={favoriteMessagesIds}
-          />
-        ))}
-      {initalMessages.length === 0 && messages.length === 0 && (
-        <p>O chat está vazio</p>
-      )}
-    </div>
+    <>
+      <div className="pl-14 dark:text-gray-300">
+        <div className="flex items-center gap-4 mt-5">
+          <Avatar>
+            <AvatarImage
+              src={"https://github.com/cplxx.png"}
+              width={40}
+              height={40}
+              className="rounded-full"
+            />
+            <AvatarFallback>{name}</AvatarFallback>
+          </Avatar>
+          <div className="flex flex-col w-full">
+            <p>{name}</p>
+            <div className="flex items-center justify-between w-full">
+              <p>{content}</p>
+              <Button
+                variant={"destructive"}
+                onClick={() => {
+                  HandleFavClick(messageId);
+                }}
+              >
+                {favoriteMessagesIds?.includes(content)
+                  ? "Remove from favorites"
+                  : "Add to favorites"}
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
-export default Messages;
+export default Message;

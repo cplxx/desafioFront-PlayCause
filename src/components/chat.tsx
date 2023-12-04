@@ -1,6 +1,6 @@
 "use client";
 import useFetchMessages from "@/services/getAllMessages";
-import Messages from "./user";
+import Messages from "./messages";
 
 const Chat = () => {
   const data = useFetchMessages();
