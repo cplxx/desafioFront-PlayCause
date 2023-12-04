@@ -1,4 +1,3 @@
-import { ComponentProps } from "react";
 import { tv, VariantProps } from "tailwind-variants";
 
 export type RoomHeaderProps = React.HTMLProps<HTMLDivElement> &

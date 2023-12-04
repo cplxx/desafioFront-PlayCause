@@ -1,29 +1,29 @@
 "use client";
-
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { loginSchema } from "@/validators/auth";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { Button } from "@/components/button";
+import { Input } from "@/components/input";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Form, FormControl, FormField, FormItem, FormMessage } from "./form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/form";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/card";
+import { registerSchema } from "@/validators/auth";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-type Input = z.infer<typeof loginSchema>;
+type Input = z.infer<typeof registerSchema>;
 
-const CardLogin = () => {
+const CardRegister = () => {
   const router = useRouter();
-
   const form = useForm<Input>({
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(registerSchema),
     defaultValues: {
+      name: "",
       email: "",
       password: "",
     },
@@ -32,15 +32,15 @@ const CardLogin = () => {
   async function onSubmit(data: Input) {
     try {
       const response = await axios.post(
-        "http://localhost:3003/auth/login",
+        "http://localhost:3003/auth/register",
         data
       );
-      localStorage.setItem("token", response.data.token);
-      console.log("usuario logado", response.data);
       router.push("/chat");
+      console.log("Registro bem-sucedido", response.data);
+
       form.reset();
     } catch (err) {
-      console.error("Falha no login", err);
+      console.error("Falha no registro", err);
     }
   }
 
@@ -53,6 +53,19 @@ const CardLogin = () => {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <CardContent className="flex flex-col gap-2">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input placeholder="nome" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
               <FormField
                 control={form.control}
                 name="email"
@@ -95,4 +108,4 @@ const CardLogin = () => {
   );
 };
 
-export default CardLogin;
+export default CardRegister;

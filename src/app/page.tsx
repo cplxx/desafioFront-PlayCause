@@ -1,4 +1,4 @@
-import TabsCard from "@/components/ui/tabsCard";
+import TabsCard from "@/components/tabsCard";
 
 export default function Home() {
   return (

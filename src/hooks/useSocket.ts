@@ -23,7 +23,7 @@ export function useSocket(socketUrl: string) {
     return () => {
       socket?.off("message", messageListener);
     };
-  }, [messageListener]);
+  }, [messageListener, socket]);
 
   const send = (value: string) => {
     socket?.emit("message", value, token);

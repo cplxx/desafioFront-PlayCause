@@ -1,21 +1,16 @@
-// MessageInput.tsx
 import React, { useState } from "react";
 import { Input } from "./input";
+import { Button } from "./button";
 import { useSocket } from "@/hooks/useSocket";
-import useMessageStore from "@/store/message";
 
 const MessageInput = () => {
   const [value, setValue] = useState("");
   const { send } = useSocket("http://localhost:8001");
-  const { addMessage } = useMessageStore();
 
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyPress = (e: any) => {
     if (e.key === "Enter") {
       console.log("chegou", value);
       send(value);
-      setValue("");
-
-      addMessage(value);
     }
   };
 
