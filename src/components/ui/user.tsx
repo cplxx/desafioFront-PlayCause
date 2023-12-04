@@ -1,50 +1,55 @@
-"use client";
-
+import React from "react";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
-import Messages from "./messages";
-import messages from "./messages";
-import { useEffect, useState } from "react";
-import { Socket, io } from "socket.io-client";
+import useFetchMessages from "@/services/getAllMessages";
+import {
+  toggleFavoriteMessage,
+  useFavoriteStore,
+} from "@/store/useFavoriteMessage";
+import { Button } from "./button";
 
-const User = () => {
-  const [socket, setSocket] = useState<Socket>();
-  const [messages, setMessages] = useState<string[]>([]);
+const Messages = () => {
+  const { data } = useFetchMessages();
 
-  useEffect(() => {
-    const newSocket = io("http://localhost:8001");
-    setSocket(newSocket);
-  }, [setSocket]);
-
-  const messageListener = (message: string) => {
-    setMessages([...messages, message]);
-  };
-
-  useEffect(() => {
-    socket?.on("message", messageListener);
-    return () => {
-      socket?.off("message", messageListener);
-    };
-  }, [messageListener]);
+  const favoriteMessagesIds = useFavoriteStore(
+    (state) => state.favoriteMessageIds
+  );
 
   return (
-    <>
-      <div className="flex flex-col">
-        <div className="flex items-center gap-4">
-          <Avatar>
-            <AvatarImage
-              src="https://github.com/shadcn.png"
-              width={40}
-              height={40}
-              className="rounded-full"
-            />
-            <AvatarFallback>CN</AvatarFallback>
-          </Avatar>
-          <p>Kevin Kalde</p>
+    <div>
+      {data?.map((item, index) => (
+        <div className="pl-14 dark:text-gray-300" key={index}>
+          <div key={item.id} className="flex items-center gap-4 mt-5">
+            <Avatar>
+              <AvatarImage
+                src={"https://github.com/cplxx.png"}
+                width={40}
+                height={40}
+                className="rounded-full"
+              />
+              <AvatarFallback>{item.user.name}</AvatarFallback>
+            </Avatar>
+            <div className="flex flex-col w-full">
+              <p>{item.user.name}</p>
+              <div className="flex items-center justify-between w-full">
+                <p>{item.content}</p>
+                <Button
+                  variant={"destructive"}
+                  onClick={() => {
+                    toggleFavoriteMessage(item.content);
+                    console.log(item.content);
+                  }}
+                >
+                  {favoriteMessagesIds.includes(item.content)
+                    ? "Remove from favorites"
+                    : "Add to favorites"}
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
-        <Messages messages={messages} />
-      </div>
-    </>
+      ))}
+    </div>
   );
 };
 
-export default User;
+export default Messages;

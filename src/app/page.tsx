@@ -1,13 +1,9 @@
-
-import RoomChat from "@/components/ui/roomChat";
-import Sidebar from "@/components/ui/sidebar";
-import Image from "next/image";
+import TabsCard from "@/components/ui/tabsCard";
 
 export default function Home() {
   return (
-    <main className="flex">
-      <Sidebar />
-      <RoomChat />
+    <main className="flex flex-col p-10 lg:px-64 bg-[#272829] h-screen">
+      <TabsCard />
     </main>
   );
 }

@@ -1,6 +1,6 @@
-import { CiCircleInfo } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
 import { ModeToggle } from "./toogleMode";
+import FavoriteMsg from "./favoriteMsg";
 
 const HeaderChatRoom = () => {
   return (
@@ -8,8 +8,7 @@ const HeaderChatRoom = () => {
       <h1 className="text-black dark:text-white">Jeremy</h1>
       <div className="flex items-center gap-4">
         <ModeToggle />
-        <CiCircleInfo className="text-xl" />
-        <FaStar className="text-yellow-400 text-xl" />
+        <FavoriteMsg />
       </div>
     </>
   );
