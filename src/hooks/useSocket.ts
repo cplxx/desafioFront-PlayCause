@@ -1,21 +1,19 @@
-"use client";
-
+import { Messages } from "@/models/messages";
 import { useState, useEffect } from "react";
 import { Socket, io } from "socket.io-client";
-import { Messages as IMessage } from "@/models/messages";
 
-export function useSocket(socketUrl: string) {
+export function useSocket() {
   const [socket, setSocket] = useState<Socket>();
-  const [messages, setMessages] = useState<IMessage[]>([]);
+  const [messages, setMessages] = useState<Messages[]>([]);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    const newSocket = io(socketUrl);
+    const newSocket = io("http://localhost:8001");
     setSocket(newSocket);
-  }, [socketUrl]);
+  }, []);
 
-  const messageListener = (message: IMessage) => {
-    setMessages([...messages, message]);
+  const messageListener = (message: Messages) => {
+    setMessages((prevMessages) => [...prevMessages, message]);
   };
 
   useEffect(() => {
@@ -23,7 +21,7 @@ export function useSocket(socketUrl: string) {
     return () => {
       socket?.off("message", messageListener);
     };
-  }, [messageListener, socket]);
+  }, [socket]);
 
   const send = (value: string) => {
     socket?.emit("message", value, token);

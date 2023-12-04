@@ -5,19 +5,20 @@ import { useSocket } from "@/hooks/useSocket";
 
 const MessageInput = () => {
   const [value, setValue] = useState("");
-  const { send } = useSocket("http://localhost:8001");
+  const { send } = useSocket();
 
-  const handleKeyPress = (e: any) => {
+  const handleKeyPress: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
     if (e.key === "Enter") {
       console.log("chegou", value);
       send(value);
+      setValue("");
     }
   };
 
   return (
     <div className="w-full flex mx-4 gap-2">
       <Input
-        placeholder="type your message..."
+        placeholder="Digite a sua mensagem..."
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={handleKeyPress}

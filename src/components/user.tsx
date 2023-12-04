@@ -1,55 +1,37 @@
-import React from "react";
-import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
-import useFetchMessages from "@/services/getAllMessages";
-import {
-  toggleFavoriteMessage,
-  useFavoriteStore,
-} from "@/store/useFavoriteMessage";
-import { Button } from "./button";
+// messages.js
 
-const Messages = () => {
-  const { data } = useFetchMessages();
+import React, { useEffect } from "react";
+import { useFavoriteStore } from "@/store/useFavoriteMessage";
+import { useSocket } from "@/hooks/useSocket";
+import { Messages as MessagesType } from "@/models/messages";
+import Message from "./message";
 
+const Messages = ({ initalMessages }: { initalMessages: MessagesType[] }) => {
+  const { messages } = useSocket();
+  console.log(initalMessages);
   const favoriteMessagesIds = useFavoriteStore(
     (state) => state.favoriteMessageIds
   );
 
+  useEffect(() => {
+    console.log("New message received:", messages);
+  }, [messages]);
+
   return (
     <div>
-      {data ? (
-        data.map((item, index) => (
-          <div className="pl-14 dark:text-gray-300" key={index}>
-            <div key={item.id} className="flex items-center gap-4 mt-5">
-              <Avatar>
-                <AvatarImage
-                  src={"https://github.com/cplxx.png"}
-                  width={40}
-                  height={40}
-                  className="rounded-full"
-                />
-                <AvatarFallback>{item.user.name}</AvatarFallback>
-              </Avatar>
-              <div className="flex flex-col w-full">
-                <p>{item.user.name}</p>
-                <div className="flex items-center justify-between w-full">
-                  <p>{item.content}</p>
-                  <Button
-                    variant={"destructive"}
-                    onClick={() => {
-                      toggleFavoriteMessage(item.content);
-                      console.log(item.content);
-                    }}
-                  >
-                    {favoriteMessagesIds.includes(item.content)
-                      ? "Remove from favorites"
-                      : "Add to favorites"}
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))
-      ) : (
+      {initalMessages.map((item) => (
+        <Message key={item.id} content={item.content} name={item.user.name} />
+      ))}
+      {messages.length > 0 &&
+        messages.map((item) => (
+          <Message
+            key={item.id}
+            content={item.content}
+            name={item.user.name}
+            favoriteMessagesIds={favoriteMessagesIds}
+          />
+        ))}
+      {initalMessages.length === 0 && messages.length === 0 && (
         <p>O chat está vazio</p>
       )}
     </div>

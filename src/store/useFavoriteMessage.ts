@@ -1,10 +1,16 @@
 import { create } from "zustand";
 
+type MessageStore = {
+  id: number;
+  userId: number;
+  content: string;
+};
+
 export type FavoriteMessageStore = {
   favoriteMessageIds: string[];
 };
 
-export const useFavoriteStore = create<FavoriteMessageStore>((set, get) => ({
+export const useFavoriteStore = create<FavoriteMessageStore>(() => ({
   favoriteMessageIds: [],
 }));
 
