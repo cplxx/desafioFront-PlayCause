@@ -11,8 +11,8 @@ export function useSocket() {
   useEffect(() => {
     const newSocket = io("NEXT_PUBLIC_API_URL");
     setSocket(newSocket);
+    console.log("oi2");
 
-    // Clean up the socket connection when the component unmounts
     return () => {
       newSocket.disconnect();
     };
@@ -32,7 +32,6 @@ export function useSocket() {
   }, [socket]);
 
   const send = (value: string) => {
-    // Ensure socket and token are defined before attempting to use them
     if (socket && token) {
       socket.emit("message", value, token);
       console.log(value, socket);
