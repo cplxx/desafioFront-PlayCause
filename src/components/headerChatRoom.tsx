@@ -6,7 +6,7 @@ import EditProfile from "./ui/editProfile";
 const HeaderChatRoom = () => {
   return (
     <>
-      <h1 className="text-black dark:text-white">Jeremy</h1>
+      <h1 className="text-black dark:text-white">Play a cause</h1>
       <div className="flex items-center gap-4">
         <ModeToggle />
         <FavoriteMsg />

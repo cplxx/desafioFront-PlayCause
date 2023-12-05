@@ -31,7 +31,7 @@ const Message = ({
         <div className="flex items-center gap-5 my-5">
           <Avatar>
             <AvatarImage
-              src={"https://github.com/cplxx.png"}
+              src={"/play.png"}
               width={40}
               height={40}
               className="rounded-full"
