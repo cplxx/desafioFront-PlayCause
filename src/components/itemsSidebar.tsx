@@ -29,7 +29,7 @@ const ItemsSidebar = ({ itemsSidebarTv }: ItemsSidebarProps) => {
       </Button>
       <div className="lg:mt-auto mt-[600px]">
         <Separator />
-        <Profile />
+        {/* <Profile /> */}
       </div>
     </div>
   );

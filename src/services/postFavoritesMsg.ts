@@ -2,8 +2,8 @@ import { api } from "./api";
 import { useMutation } from "@tanstack/react-query";
 import { UserMessage } from "@/models/userMessages";
 
-export const PostAllFavoriteMsg = async (messageId: number) => {
-  const { data } = await api.post<UserMessage[]>(`/user-message`, {
+export const PostFavoriteMsg = async (messageId: number) => {
+  const { data } = await api.post<UserMessage>(`/user-message`, {
     messageId: messageId,
   });
   return data;
@@ -11,6 +11,6 @@ export const PostAllFavoriteMsg = async (messageId: number) => {
 
 export default function usePostFavoriteMsg() {
   return useMutation({
-    mutationFn: PostAllFavoriteMsg,
+    mutationFn: PostFavoriteMsg,
   });
 }

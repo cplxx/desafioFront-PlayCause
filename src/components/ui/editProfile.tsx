@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "./button";
 import {
   Dialog,
   DialogContent,
@@ -7,11 +7,11 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "./ui/input";
-import { Label } from "@radix-ui/react-label";
-import { ContextMenu } from "./ui/context-menu";
-const editProfileModal = () => {
+} from "./dialog";
+import { Input } from "./input";
+import { Label } from "./label";
+
+const EditProfile = () => {
   return (
     <>
       <Dialog>
@@ -39,12 +39,6 @@ const editProfileModal = () => {
                 className="col-span-3"
               />
             </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="username" className="text-right">
-                Imagem
-              </Label>
-              <ContextMenu />
-            </div>
           </div>
           <DialogFooter>
             <Button type="submit">Save changes</Button>
@@ -55,4 +49,4 @@ const editProfileModal = () => {
   );
 };
 
-export default editProfileModal;
+export default EditProfile;

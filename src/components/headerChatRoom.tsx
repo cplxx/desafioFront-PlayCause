@@ -1,7 +1,7 @@
 import { FaStar } from "react-icons/fa";
 import { ModeToggle } from "./toogleMode";
 import FavoriteMsg from "./favoriteMsg";
-import FavoriteMsgCopy from "./editProfileModal";
+import EditProfile from "./ui/editProfile";
 
 const HeaderChatRoom = () => {
   return (
@@ -10,7 +10,7 @@ const HeaderChatRoom = () => {
       <div className="flex items-center gap-4">
         <ModeToggle />
         <FavoriteMsg />
-        <FavoriteMsgCopy />
+        <EditProfile />
       </div>
     </>
   );

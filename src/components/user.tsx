@@ -1,7 +1,7 @@
 import { toggleFavoriteMessage } from "@/store/useFavoriteMessage";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import { Button } from "./ui/button";
-import usePostFavoriteMsg from "@/services/postAllFavoritesMsg";
+import usePostFavoriteMsg from "@/services/postFavoritesMsg";
 import { FaHeartCircleCheck, FaHeartCrack } from "react-icons/fa6";
 
 interface MessageProps {

@@ -1,8 +1,10 @@
 import useFetchUser from "@/services/getUserById";
-import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import { FaUserSecret } from "react-icons/fa6";
+import { Avatar, AvatarImage, AvatarFallback } from "./avatar";
 const Profile = () => {
-  const { data } = useFetchUser();
+  const { data, isLoading } = useFetchUser(2);
+  if (isLoading) return;
+
   console.log(data);
 
   return (
@@ -26,7 +28,7 @@ const Profile = () => {
             <AvatarFallback className="text-black dark:text-white"></AvatarFallback>
           </Avatar>
           <div className="flex flex-col ">
-            <p className="text-black dark:text-white">yan</p>
+            <p className="text-black dark:text-white">{data?.name}</p>
           </div>
         </div>
       </div>
