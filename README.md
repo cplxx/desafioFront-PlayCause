@@ -4,7 +4,7 @@
 
 
 
-  <p align="center">Bem-vindo ao frontend do teste técnico de um chat em tempo real fornecido para "Play For A Cause"! Este repositório contém a implementação do servidor utilizando NodeJS, NestJS e Prisma ORM.</p>
+  <p align="center">Bem-vindo ao frontend do teste técnico de um chat em tempo real fornecido para "Play For A Cause"! Este repositório contém a implementação do website utilizando  <img src="https://skillicons.dev/icons?i=react,nextjs,tailwind,typescript" />, .</p>
 
 
 
