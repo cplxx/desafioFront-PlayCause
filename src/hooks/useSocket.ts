@@ -9,7 +9,7 @@ export function useSocket() {
     typeof localStorage !== "undefined" ? localStorage.getItem("token") : null;
 
   useEffect(() => {
-    const newSocket = io("NEXT_PUBLIC_API_URL");
+    const newSocket = io("https://chat-api-n6ks.onrender.com");
     setSocket(newSocket);
     console.log("oi2");
 
