@@ -37,10 +37,10 @@ const CardRegister = () => {
   async function onSubmit(data: Input) {
     try {
       const response = await axios.post(
-        "http://localhost:3003/auth/register",
+        "https://chat-api-n6ks.onrender.com/auth/register",
         data
       );
-      router.push("/chat");
+      router.push("/");
       console.log("Registro bem-sucedido", response.data);
 
       form.reset();

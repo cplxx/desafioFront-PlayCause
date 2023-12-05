@@ -9,7 +9,7 @@ export function useSocket() {
     typeof localStorage !== "undefined" ? localStorage.getItem("token") : null;
 
   useEffect(() => {
-    const newSocket = io("http://localhost:8001");
+    const newSocket = io("NEXT_PUBLIC_API_URL");
     setSocket(newSocket);
 
     // Clean up the socket connection when the component unmounts
@@ -23,7 +23,6 @@ export function useSocket() {
   };
 
   useEffect(() => {
-    // Ensure socket is defined before attempting to use it
     if (socket) {
       socket.on("message", messageListener);
       return () => {

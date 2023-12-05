@@ -1,3 +1,5 @@
 import axios from "axios";
 
-export const api = axios.create({ baseURL: "http://localhost:3003" });
+export const api = axios.create({
+  baseURL: "https://chat-api-n6ks.onrender.com",
+});

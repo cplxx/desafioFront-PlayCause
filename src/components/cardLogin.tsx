@@ -32,7 +32,7 @@ const CardLogin = () => {
   async function onSubmit(data: Input) {
     try {
       const response = await axios.post(
-        "http://localhost:3003/auth/login",
+        "https://chat-api-n6ks.onrender.com/auth/login",
         data
       );
       localStorage.setItem("token", response.data.token);
