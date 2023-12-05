@@ -1,4 +1,3 @@
-import { Message } from "postcss";
 import { User } from "./user";
 
 export interface UserMessage {

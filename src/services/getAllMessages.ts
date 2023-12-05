@@ -1,6 +1,5 @@
 import { Messages } from "@/models/messages";
 import { api } from "./api";
-import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 
 export const GetAllMessages = async () => {
