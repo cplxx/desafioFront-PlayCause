@@ -1,6 +1,6 @@
 "use client";
-import { Button } from "@/components/button";
-import { Input } from "@/components/input";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,7 +11,12 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/form";
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
 import { registerSchema } from "@/validators/auth";
 import axios from "axios";
 import { useRouter } from "next/navigation";

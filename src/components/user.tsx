@@ -1,20 +1,22 @@
 import { toggleFavoriteMessage } from "@/store/useFavoriteMessage";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
-import { Button } from "./button";
+import { Button } from "./ui/button";
 import usePostFavoriteMsg from "@/services/postAllFavoritesMsg";
+import { FaHeartCircleCheck, FaHeartCrack } from "react-icons/fa6";
 
 interface MessageProps {
   name: string;
   content: string;
   favoriteMessagesIds?: string[];
   messageId: number;
+  token: string;
 }
 
 const Message = ({
-  name,
   content,
-  favoriteMessagesIds,
   messageId,
+  name,
+  favoriteMessagesIds,
 }: MessageProps) => {
   const mutation = usePostFavoriteMsg();
 
@@ -25,8 +27,8 @@ const Message = ({
 
   return (
     <>
-      <div className="pl-14 dark:text-gray-300">
-        <div className="flex items-center gap-4 mt-5">
+      <div className=" dark:text-gray-300">
+        <div className="flex items-center gap-5 my-5">
           <Avatar>
             <AvatarImage
               src={"https://github.com/cplxx.png"}
@@ -36,19 +38,23 @@ const Message = ({
             />
             <AvatarFallback>{name}</AvatarFallback>
           </Avatar>
-          <div className="flex flex-col w-full">
+          <div className="flex flex-col">
             <p>{name}</p>
-            <div className="flex items-center justify-between w-full">
-              <p>{content}</p>
+            <div className="flex items-center ">
+              <p className="">{content}</p>
               <Button
-                variant={"destructive"}
+                className="opacity-10"
+                size={"sm"}
+                variant={"link"}
                 onClick={() => {
                   HandleFavClick(messageId);
                 }}
               >
-                {favoriteMessagesIds?.includes(content)
-                  ? "Remove from favorites"
-                  : "Add to favorites"}
+                {favoriteMessagesIds?.includes(content) ? (
+                  <FaHeartCrack />
+                ) : (
+                  <FaHeartCircleCheck />
+                )}
               </Button>
             </div>
           </div>

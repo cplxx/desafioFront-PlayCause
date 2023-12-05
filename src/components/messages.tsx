@@ -22,6 +22,7 @@ const Messages = ({ initalMessages }: { initalMessages: MessagesType[] }) => {
           name={item.user.name}
           favoriteMessagesIds={favoriteMessagesIds}
           messageId={item.id}
+          token={""}
         />
       ))}
       {messages.length > 0 &&
@@ -32,6 +33,7 @@ const Messages = ({ initalMessages }: { initalMessages: MessagesType[] }) => {
             name={item.user.name}
             favoriteMessagesIds={favoriteMessagesIds}
             messageId={item.id}
+            token={""}
           />
         ))}
       {initalMessages.length === 0 && messages.length === 0 && (

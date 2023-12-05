@@ -1,13 +1,11 @@
-import { Button } from "./button";
-import ItemsSidebar from "./itemsSidebar";
-import Room from "./itemsSidebar";
-import { Sheet, SheetContent, SheetTrigger } from "./sheet";
+import ItemsSidebar from "../itemsSidebar";
+import { Sheet, SheetContent, SheetTrigger } from "../sheet";
 import { RxHamburgerMenu } from "react-icons/rx";
 
 const Sidebar = () => {
   return (
     <>
-      <aside className="lg:w-[15%] w-[10%] h-screen text-white">
+      <aside className="lg:w-[15%] w-[10%] h-screen  justify-between text-white">
         <div className="block lg:hidden">
           <Sheet>
             <div className=" flex items-start pt-5 justify-center  h-screen dark:bg-[#292b2f] bg-[#F5F7F8]">

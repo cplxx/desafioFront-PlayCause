@@ -1,8 +1,13 @@
 "use client";
 
-import { Button } from "@/components/button";
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/card";
-import { Input } from "@/components/input";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { loginSchema } from "@/validators/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";

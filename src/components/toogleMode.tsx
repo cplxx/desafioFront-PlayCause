@@ -4,13 +4,13 @@ import * as React from "react";
 import { FaMoon, FaSun } from "react-icons/fa6";
 import { useTheme } from "next-themes";
 
-import { Button } from "@/components/button";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 
 export function ModeToggle() {
   const { setTheme } = useTheme();

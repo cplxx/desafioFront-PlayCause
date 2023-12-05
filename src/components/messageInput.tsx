@@ -1,28 +1,21 @@
 import React, { useState } from "react";
-import { Input } from "./input";
-import { Button } from "./button";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
 import { useSocket } from "@/hooks/useSocket";
+import { Textarea } from "./ui/textarea";
 
 const MessageInput = () => {
   const [value, setValue] = useState("");
   const { send } = useSocket();
 
-  const handleKeyPress: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
-    if (e.key === "Enter") {
-      send(value);
-      setValue("");
-    }
-  };
-
   return (
-    <div className="w-full flex mx-4 gap-2">
-      <Input
-        placeholder="Digite a sua mensagem..."
+    <div className="grid w-full mx-10 mb-5 gap-2">
+      <Textarea
+        placeholder="Escreva a sua mensagem"
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        onKeyDown={handleKeyPress}
-        className="h-12"
       />
+      <Button onClick={() => send(value)}>Enviar mensagem</Button>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 "use client";
 
 import HeaderChatRoom from "./headerChatRoom";
-import { Room } from "./room";
+import { Room } from "./ui/room";
 import { Separator } from "./separator";
 import MessageInput from "./messageInput";
 import Chat from "./chat";
