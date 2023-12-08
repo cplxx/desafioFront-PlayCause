@@ -21,3 +21,5 @@ Implementação da funcionalidade de mensagens favoritas persistente.<br>
 Adição da opção para os usuários editarem seus perfis.<br>
 Criação da página inicial com visão geral e navegação eficiente.
 
+##
+OBS: Perante o deploy da API no servidor grátis da render pode ter um pequeno delay nas operações, se achar melhor pode testar localmente!
