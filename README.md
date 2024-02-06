@@ -23,3 +23,17 @@ Criação da página inicial com visão geral e navegação eficiente.
 
 ##
 OBS: Perante o deploy da API no servidor grátis da render pode ter um pequeno delay nas operações, se achar melhor pode testar localmente!
+
+
+
+
+
+
+
+curl https://api.openai.com/v1/chat/completions \
+ -H "Authorization: Bearer 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" \
+ -H "Content-Type: application/json" \
+ -d '{
+ "model": "gpt-4-turbo-preview",
+ "messages": [{"role": "user", "content": "What is the OpenAI mission?"}] 
+ }'

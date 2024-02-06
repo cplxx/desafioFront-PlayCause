@@ -10,11 +10,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { loginSchema } from "@/validators/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "./form";
-import axios from "axios";
-import { useRouter } from "next/navigation";
 
 type Input = z.infer<typeof loginSchema>;
 
@@ -32,7 +32,7 @@ const CardLogin = () => {
   async function onSubmit(data: Input) {
     try {
       const response = await axios.post(
-        "https://chat-api-n6ks.onrender.com/auth/login",
+        "http://localhost:3003/auth/login",
         data
       );
       localStorage.setItem("token", response.data.token);

@@ -1,25 +1,25 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormMessage,
 } from "@/components/form";
+import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
+    Card,
+    CardContent,
+    CardFooter,
+    CardHeader,
 } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { registerSchema } from "@/validators/auth";
+import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 type Input = z.infer<typeof registerSchema>;
 
@@ -37,7 +37,7 @@ const CardRegister = () => {
   async function onSubmit(data: Input) {
     try {
       const response = await axios.post(
-        "https://chat-api-n6ks.onrender.com/auth/register",
+        "http://localhost:3003/auth/register",
         data
       );
       router.push("/");

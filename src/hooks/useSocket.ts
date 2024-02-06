@@ -1,5 +1,5 @@
 import { Messages } from "@/models/messages";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Socket, io } from "socket.io-client";
 
 export function useSocket() {
@@ -9,7 +9,7 @@ export function useSocket() {
     typeof localStorage !== "undefined" ? localStorage.getItem("token") : null;
 
   useEffect(() => {
-    const newSocket = io("https://chat-api-n6ks.onrender.com");
+    const newSocket = io("http://localhost:3003");
     setSocket(newSocket);
     console.log("oi2");
 
