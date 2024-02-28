@@ -1,11 +1,11 @@
 "use client";
 
-import { createContext, ReactNode, useEffect, useState } from "react";
-import Cookies from "js-cookie";
-import { addDays } from "date-fns";
 import { User } from "@/models/user";
-import { whoAmI } from "@/services/who-am-i";
 import { login } from "@/services/login";
+import { whoAmI } from "@/services/who-am-i";
+import { addDays } from "date-fns";
+import Cookies from "js-cookie";
+import { createContext, ReactNode, useEffect, useState } from "react";
 
 type AuthProviderProps = {
   children: ReactNode;
@@ -41,7 +41,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   const handleLogin = async (values: LoginFormInput) => {
     login(values).then(({ data, status }) => {
-      if (status === 200) {
+      if (status === 200 || status === 201) {
         Cookies.set("token", data.token, {
           expires: addDays(new Date(), 24),
         });

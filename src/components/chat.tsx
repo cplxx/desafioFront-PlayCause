@@ -1,9 +1,14 @@
 "use client";
 import useFetchMessages from "@/services/getAllMessages";
+import { AuthContext } from "@/store/auth";
+import { useContext } from "react";
 import Messages from "./messages";
 
 const Chat = () => {
-  const data = useFetchMessages();
+
+  const { token} = useContext(AuthContext)
+  console.log(token);
+  const data = useFetchMessages({ token });
 
   return (
     <>

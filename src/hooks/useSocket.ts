@@ -1,17 +1,16 @@
 import { Messages } from "@/models/messages";
-import { useEffect, useState } from "react";
+import { AuthContext } from "@/store/auth";
+import { useContext, useEffect, useState } from "react";
 import { Socket, io } from "socket.io-client";
 
 export function useSocket() {
   const [socket, setSocket] = useState<Socket | undefined>();
   const [messages, setMessages] = useState<Messages[]>([]);
-  const token =
-    typeof localStorage !== "undefined" ? localStorage.getItem("token") : null;
+  const { token } = useContext(AuthContext)
 
   useEffect(() => {
     const newSocket = io("http://localhost:3003");
     setSocket(newSocket);
-    console.log("oi2");
 
     return () => {
       newSocket.disconnect();
