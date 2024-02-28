@@ -1,5 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import CardLogin from "./cardLogin";
+import CardLogin from "./login";
 import CardRegister from "./cardRegister";
 
 const TabsCard = () => {

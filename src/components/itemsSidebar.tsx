@@ -6,7 +6,7 @@ import { RiEditBoxLine } from "react-icons/ri";
 import { Dropdown } from "./dropdown";
 
 const itemsSidebar = tv({
-  base: "dark:bg-[#343434] bg-[#F5F7F8] flex flex-col h-screen lg:p-5",
+  base: "dark:bg-[#343434] bg-[#F5F7F8] flex flex-col h-screen lg:pt-7 px-4",
   variants: {
     itemsSidebarTv: {
       mobile: "block lg:hidden",
@@ -23,11 +23,11 @@ const ItemsSidebar = ({ itemsSidebarTv }: ItemsSidebarProps) => {
     <div className={itemsSidebar({ itemsSidebarTv })}>
       <div className="flex items-center justify-between text-black">
         <h2>Novo chat</h2>
-        <Button variant={"ghost"}>
+        <span className="cursor-pointer">
           <RiEditBoxLine />
-        </Button>
+        </span>
       </div>
-      <Separator />
+      <Separator className="w-full" />
       <div className="mt-5 flex justify-between items-center">
         <span className="hover:underline text-black ">Play a cause</span>
         <Dropdown />
