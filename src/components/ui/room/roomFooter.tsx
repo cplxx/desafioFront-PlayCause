@@ -4,7 +4,7 @@ type footerProps = React.HTMLProps<HTMLDivElement> &
   VariantProps<typeof footer>;
 
 const footer = tv({
-  base: "flex items-end justify-end",
+  base: "flex items-center justify-center",
   variants: {
     footerRoom: {
       roomFooter: "text-lg",

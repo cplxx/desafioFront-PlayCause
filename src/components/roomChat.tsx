@@ -13,7 +13,6 @@ const RoomChat = () => {
         <Room.Header headersRoom="mobile">
           <HeaderChatRoom />
         </Room.Header>
-        <Separator />
         <Room.Content>
           <Chat />
         </Room.Content>

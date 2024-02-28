@@ -2,7 +2,8 @@ import React from "react";
 import { VariantProps, tv } from "tailwind-variants";
 import { Button } from "./ui/button";
 import { Separator } from "./separator";
-import Profile from "./ui/profile";
+import { RiEditBoxLine } from "react-icons/ri";
+import { Dropdown } from "./dropdown";
 
 const itemsSidebar = tv({
   base: "dark:bg-[#343434] bg-[#F5F7F8] flex flex-col h-screen lg:p-5",
@@ -20,16 +21,16 @@ type ItemsSidebarProps = React.HTMLProps<HTMLDivElement> &
 const ItemsSidebar = ({ itemsSidebarTv }: ItemsSidebarProps) => {
   return (
     <div className={itemsSidebar({ itemsSidebarTv })}>
-      <div>
-        <h2 className="text-black dark:text-white">Grupo</h2>
+      <div className="flex items-center justify-between text-black">
+        <h2>Novo chat</h2>
+        <Button variant={"ghost"}>
+          <RiEditBoxLine />
+        </Button>
       </div>
       <Separator />
-      <Button variant={"secondary"} className="mt-5">
-        Play a cause
-      </Button>
-      <div className="lg:mt-auto mt-[600px]">
-        <Separator />
-        {/* <Profile /> */}
+      <div className="mt-5 flex justify-between items-center">
+        <span className="hover:underline text-black ">Play a cause</span>
+        <Dropdown />
       </div>
     </div>
   );
